@@ -1,1 +1,1 @@
-export { default } from "file:///C:/Users/dwiar/OneDrive/Documents/2.%20Kuliah%20UNY%20Semester%202/Infinite%202023/Learning%20Path%20Web%20Dev/Project%20Akhir%20Serdadu%20Jawir/app/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"
+export { default } from "file:///D:/Project%20Web/Eling-Tugas-Nuxt/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"

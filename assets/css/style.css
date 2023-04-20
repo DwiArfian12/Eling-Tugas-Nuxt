@@ -334,6 +334,13 @@ a.edit {
     gap: 20px;
 }
 
+.modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 20px;
+}
+
 .fg {
     display: flex;
     flex-direction: column;
