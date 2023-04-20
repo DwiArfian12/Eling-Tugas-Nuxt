@@ -1,0 +1,435 @@
+/* Import Font */
+@font-face {
+    font-family: bold;
+    src: url("../font/gadugi-bold.ttf");
+}
+
+@font-face {
+    font-family: smbold;
+    src: url("../font/gadugi-gras.ttf");
+}
+
+@font-face {
+    font-family: reg;
+    src: url("../font/gadugi-normal.ttf");
+}
+
+@font-face {
+    font-family: demi;
+    src: url("../font/AvantGardeDemiBT.ttf");
+}
+
+/* Body */
+body {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar */
+nav {
+    width: 100%;
+    height: 120px;
+    background: blue;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5% 6%;
+    box-sizing: border-box;
+    align-items: center;
+    background: linear-gradient(to right, #c165dd, #5155cf);
+}
+
+nav .logo img {
+    width: 27%;
+}
+
+nav .menu ul {
+    font-family: 'Segoe UI';
+    list-style: none;
+    font-weight: 650;
+    display: flex;
+    align-items: flex-end;
+    gap: 35px;
+    font-size: 22px;
+}
+
+nav .menu li a, .alink {
+    text-decoration: none;
+    color: #fff;
+}
+
+nav .menu li a:hover {
+    border-bottom: 3px solid #fff;
+    padding-bottom: 10px;
+}
+
+.alink:hover {
+    cursor: pointer;
+}
+
+a.router-link-exact-active {
+    border-bottom: 3px solid #fff;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+/* Main Content */
+main {
+    display: flex;
+    box-sizing: border-box;
+    padding: 0 30px;
+    align-items: center;
+}
+
+.beranda {
+    width: 100%;
+    height: calc(100vh - 180px);
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+main .left {
+    width: 50%;
+    padding: 5% 8%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+main .left .title {
+    font-size: 2.3rem;
+    color: #3b5998;
+    font-family: demi;
+    width: 100%;
+}
+
+main .left hr {
+    margin-top: -23px;
+    margin-bottom: -2px;
+    border: 2.5px solid #3b5998 !important;
+    width: 100%;
+}
+
+main .left .tagline {
+    font-family: 'Segoe UI';
+    font-size: 2rem;
+    display: flex;
+    line-height: 3.2rem;
+}
+
+main .right {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .right img {
+    width: 500px;
+    animation: mover 1s infinite alternate;
+}
+
+@keyframes mover {
+    0% {
+        transform: translateY(10px);  
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Footer */
+footer {
+    height: 60px;
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(to right, #c165dd, #5155cf);
+    display: flex;
+    position: relative;
+    bottom: 0;
+}
+
+footer .logo-footer {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+footer .cr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI';
+    font-weight: 700;
+    color: #fff;
+    width: 100%;
+    line-height: 0px;
+}
+
+footer .cr p {
+    text-align: center;
+    margin: 12px;
+}
+
+footer .cr a {
+    text-decoration: none;
+    color: #fff;
+}
+
+footer .cr a:hover {
+    text-decoration: underline;
+    color: #c7c7c7;
+}
+
+/* About Section */
+.about {
+    padding: 50px 159px;
+    height: calc(100vh - 280px);
+}
+
+.about h1 {
+    font-family: demi;
+    color: #c165dd;
+    font-size: 3.5rem;
+    margin-bottom: -1px;
+}
+
+.about p {
+    font-family: reg;
+    font-size: 23px;
+    line-height: 40px;
+    text-align: justify;
+}
+
+/* Mata Kuliah Section */
+.matkul {
+    padding: 20px 159px;
+    width: 100%;
+    margin-bottom: 30px;
+    min-height: calc(100vh - 250px);
+}
+
+.matkul h1 {
+    font-family: demi;
+    color: #c165dd;
+    font-size: 3rem;
+    margin-bottom: -1px;
+}
+
+table.data {
+    margin-top: 20px;
+    width: 100%;
+    font-family: reg;
+    font-weight: 600;
+    font-size: 20px;
+    border-collapse: collapse;
+}
+
+
+table.data tr  {
+    border-bottom: 2px solid grey;
+    height: 50px;
+}
+
+table.data tr:hover  {
+    border-bottom: 2px solid rgb(83, 83, 83);
+    background: rgb(243, 243, 243);
+}
+
+table.data th {
+    text-align: left;
+    padding: 0 15px;
+}
+
+table.data td {
+    padding: 0 15px;
+    color: rgb(71, 71, 71);
+}
+
+.tambah {
+    float: right;
+    text-decoration: none;
+    font-family: smbold;
+    background: #c165dd;
+    color: white;
+    padding: 7px 21px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    border: none;
+}
+
+.tambah:hover {
+    background: #3b5998;
+    cursor: pointer;
+}
+
+a.aksi {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 3px 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+a.aksi:hover {
+    filter: brightness(80%);
+}
+
+a.hapus {
+    background: red;
+}
+
+a.edit {
+    background: green;
+}
+
+/* Tugas Section */
+.tugas {
+    padding: 20px 130px;
+    width: 100%;
+    min-height: calc(100vh - 220px);
+}
+
+.tugas h1 {
+    font-family: demi;
+    color: #c165dd;
+    font-size: 3rem;
+    margin-bottom: -1px;
+}
+
+/* Login & Daftar Section */
+.login {
+    padding: 50px 160px;
+    width: 100%;
+    min-height: calc(100vh - 180px);
+}
+
+.daftar {
+    padding: 40px 160px;
+    width: 100%;
+    min-height: calc(100vh - 180px);
+}
+
+.login h1, .daftar h1 {
+    font-family: demi;
+    color: #c165dd;
+    font-size: 3rem;
+    margin-bottom: -1px;
+}
+
+.login form, .daftar form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 0 20px;
+}
+
+.addSubject form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.fg {
+    display: flex;
+    flex-direction: column;
+    font-family: reg;
+    font-weight: bolder;;
+}
+
+.fg label {
+    font-size: 21px;
+}
+
+.fg input {
+    border: none;
+    border-bottom: 2px solid rgb(112, 112, 112);
+    outline: none;
+    margin-top: 7px;
+    padding: 6px 10px;
+    font-size: 20px;
+    color: rgb(71, 71, 71);
+}
+
+.fg input:focus {
+    border-bottom: 2px solid #000;
+}
+
+.loginBtn {
+    text-decoration: none;
+    font: 20px smbold;
+    color: #fff;
+    background: #c165dd;
+    padding: 3px 20px 7px 20px;
+    width: 17%;
+    text-align: center;
+    align-self: flex-end;
+    border-radius: 10px;
+    border: none;
+}
+
+.loginBtn:hover {
+    filter: brightness(80%);
+    cursor: pointer;
+}
+
+a.daftar-ask {
+    text-decoration: none;
+    font-family: reg;
+    color: #c165dd;
+    margin-left: 10px;
+    font-size: 17px;
+    margin-bottom: -20px;
+}
+
+a.daftar-ask:hover {
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+.term {
+    font-family: demi;
+    margin: -3px 0 0 0;
+}
+
+input:disabled {
+    background: #f3f3f3;
+    cursor: not-allowed;
+}
+
+p.perbarui {
+    font-family: reg;
+    font-size: 1.3rem;
+}
+
+.hapusBtn {
+    border: none;
+    background: transparent;
+    width: 17%;
+    color: #fff;
+    background: red;
+    border-radius: 10px;
+    font: 16px smbold;
+    text-transform: uppercase;
+    float: left;
+}
+
+.hapusBtn:hover {
+    background: white;
+    color: red;
+    border: 1px solid red;
+}
+
+.tmbl {
+    display: flex;
+    justify-content: space-between;
+}
+
+.addSubject {
+    margin-top: 20px;
+    padding: 40px 10px;
+}
