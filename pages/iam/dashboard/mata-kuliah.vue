@@ -13,19 +13,19 @@
           <form>
           <div class="fg">
             <label for="floatingFirstName">Nama Mata Kuliah</label>
-            <input v-model="nama_matkul" type="text" class="form-control" id="floatingFirstName" placeholder="Misal: Pemrograman">
+            <input v-model="nama_matkul" type="text" id="floatingFirstName" placeholder="Misal: Pemrograman">
           </div>
           <div class="fg">
             <label for="floatingLastName">Nama Dosen</label>
-            <input v-model="nama_dosen" type="text" class="form-control" id="floatingLastName" placeholder="Misal: Dwi Arfian, M.Pd">
+            <input v-model="nama_dosen" type="text" id="floatingLastName" placeholder="Misal: Dwi Arfian, M.Pd">
           </div>
           <div class="fg">
             <label for="floatingEmail">Hari</label>
-            <input v-model="hari" type="email" class="form-control" id="floatingEmail" placeholder="Misal: Senin">
+            <input v-model="hari" type="email" id="floatingEmail" placeholder="Misal: Senin">
           </div>
           <div class="fg">
             <label for="floatingPassword">Jam</label>
-            <input v-model="jam" type="text" class="form-control" id="floatingPassword" placeholder="Misal: 09.11 - 12.30">
+            <input v-model="jam" type="text" id="floatingPassword" placeholder="Misal: 09.11 - 12.30">
           </div>                
           <button type="submit" @click.prevent="addSubject(nama_matkul, nama_dosen, hari, jam)" @click="isShow = false" class="loginBtn">Tambah +</button>
         </form>    
@@ -39,7 +39,8 @@
             <th>Jam</th>
             <th>Aksi</th>
           </tr>
-          <tr v-for="(subject, index) in subjects">
+          <template v-for="subject in subjects">
+          <tr  v-if="subject.user_id == profile.id">
             <td>{{ subject.nama_matkul }}</td>
             <td>{{ subject.nama_dosen }}</td>
             <td>{{ subject.hari }}</td>
@@ -59,19 +60,19 @@
                   <form>
                     <div class="fg">
                       <label for="floatingFirstName">Nama Mata Kuliah</label>
-                      <input v-model="editedSubject.nama_matkul" type="text" class="form-control" id="floatingFirstName" placeholder="Misal: Pemrograman">
+                      <input v-model="editedSubject.nama_matkul" type="text" id="floatingFirstName" placeholder="Misal: Pemrograman">
                     </div>
                     <div class="fg">
                       <label for="floatingLastName">Nama Dosen</label>
-                      <input v-model="editedSubject.nama_dosen" type="text" class="form-control" id="floatingLastName" placeholder="Misal: Dwi Arfian, M.Pd">
+                      <input v-model="editedSubject.nama_dosen" type="text" id="floatingLastName" placeholder="Misal: Dwi Arfian, M.Pd">
                     </div>
                     <div class="fg">
                       <label for="floatingEmail">Hari</label>
-                      <input v-model="editedSubject.hari" type="email" class="form-control" id="floatingEmail" placeholder="Misal: Senin">
+                      <input v-model="editedSubject.hari" type="email" id="floatingEmail" placeholder="Misal: Senin">
                     </div>
                     <div class="fg">
                       <label for="floatingPassword">Jam</label>
-                      <input v-model="editedSubject.jam" type="text" class="form-control" id="floatingPassword" placeholder="Misal: 09.11 - 12.30">
+                      <input v-model="editedSubject.jam" type="text" id="floatingPassword" placeholder="Misal: 09.11 - 12.30">
                     </div>                
                     <button data-bs-dismiss="modal" type="submit" @click.prevent="editSubject(editedSubject)" @click="isShow = false" class="loginBtn">Edit</button>
                   </form> 
@@ -79,7 +80,8 @@
               </div>
             </div>
           </div>
-          </tr>
+        </tr>
+      </template>
         </table>
       </div>
     </main>
@@ -102,6 +104,18 @@ export default {
 
 <script setup>
 
+const profile = {
+  id: "",
+  firstName: "",
+  lastName: "",
+};
+
+// Get profile passed through attributes
+const attrs = useAttrs();
+profile.id = attrs.profile.id;
+profile.firstName = attrs.profile.firstName;
+profile.lastName = attrs.profile.lastName;
+
 const subjects = ref(null)
 const id = ref(null)
 const nama_matkul = ref(null)
@@ -110,6 +124,7 @@ const hari = ref(null)
 const jam = ref(null)
 const editedSubject = ref({
   id: null,
+  user_id: profile.id,
   nama_matkul: null,
   nama_dosen: null,
   hari: null,
@@ -133,6 +148,7 @@ async function addSubject(nama_matkul, nama_dosen, hari, jam) {
   addedSubject = await $fetch('/api/subjects', {
     method: 'POST',
     body: {
+      user_id: profile.id,
       nama_matkul: nama_matkul,
       nama_dosen: nama_dosen,
       hari: hari,
@@ -150,11 +166,12 @@ async function addSubject(nama_matkul, nama_dosen, hari, jam) {
  async function editSubject(editedSubject) {
   let subject = null
 
-  if(editedSubject.id && editedSubject.nama_matkul && editedSubject.nama_dosen && editedSubject.hari && editedSubject.jam)
+  if(editedSubject.id && editedSubject.user_id && editedSubject.nama_matkul && editedSubject.nama_dosen && editedSubject.hari && editedSubject.jam)
     subject = await $fetch('/api/subjects', {
       method: 'PUT',
       body: {
         id: editedSubject.id,
+        user_id: editedSubject.user_id,
         nama_matkul: editedSubject.nama_matkul,
         nama_dosen: editedSubject.nama_dosen,
         hari: editedSubject.hari,

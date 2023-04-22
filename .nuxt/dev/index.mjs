@@ -4085,7 +4085,7 @@ const subjects_delete$1 = /*#__PURE__*/Object.freeze({
 });
 
 const prisma$6 = new PrismaClient();
-const subjects_get = defineEventHandler(async () => {
+const subjects_get = defineEventHandler(async (event) => {
   return await prisma$6.subjects.findMany();
 });
 
@@ -4098,9 +4098,10 @@ const prisma$5 = new PrismaClient();
 const subjects_post = defineEventHandler(async (event) => {
   const body = await readBody(event);
   let subject = null;
-  if (body.nama_matkul && body.nama_dosen && body.hari && body.jam) {
+  if (body.user_id && body.nama_matkul && body.nama_dosen && body.hari && body.jam) {
     await prisma$5.subjects.create({
       data: {
+        user_id: body.user_id,
         nama_matkul: body.nama_matkul,
         nama_dosen: body.nama_dosen,
         hari: body.hari,
@@ -4124,11 +4125,12 @@ const prisma$4 = new PrismaClient();
 const subjects_put = defineEventHandler(async (event) => {
   const body = await readBody(event);
   const id = body.id;
+  const user_id = body.user_id;
   const nama_matkul = body.nama_matkul;
   const nama_dosen = body.nama_dosen;
   const hari = body.hari;
   const jam = body.jam;
-  if (!(id && nama_matkul && nama_dosen && hari && jam))
+  if (!(id && user_id && nama_matkul && nama_dosen && hari && jam))
     return createError({ statusCode: 400, statusMessage: "Missing ID and soon " });
   let subject;
   if (id && nama_matkul && nama_dosen && hari && jam) {
@@ -4137,6 +4139,7 @@ const subjects_put = defineEventHandler(async (event) => {
         id
       },
       data: {
+        user_id,
         nama_matkul,
         nama_dosen,
         hari,
@@ -4192,11 +4195,11 @@ const prisma$1 = new PrismaClient();
 const tasks_post = defineEventHandler(async (event) => {
   const body = await readBody(event);
   let task = null;
-  if (body.subject_id && body.job && body.jenis && body.deadline && body.status) {
+  if (body.nama_matkul && body.job && body.jenis && body.deadline && body.status) {
     await prisma$1.tasks.create({
       data: {
+        nama_matkul: body.nama_matkul,
         job: body.job,
-        subject_id: body.subject_id,
         jenis: body.jenis,
         deadline: body.deadline,
         status: body.status
@@ -4219,29 +4222,29 @@ const prisma = new PrismaClient();
 const tasks_put = defineEventHandler(async (event) => {
   const body = await readBody(event);
   const id = body.id;
+  const nama_matkul = body.nama_matkul;
   const job = body.job;
-  const subject_id = body.subject_id;
   const jenis = body.jenis;
   const deadline = body.deadline;
   const status = body.status;
-  if (!(id && subject_id && job && jenis && deadline && status))
+  if (!(id && nama_matkul && job && jenis && deadline && status))
     return createError({ statusCode: 400, statusMessage: "Missing ID and soon " });
-  let subject;
-  if (id && subject_id && job && jenis && deadline && status) {
-    subject = await prisma.tasks.update({
+  let task;
+  if (id && nama_matkul && job && jenis && deadline && status) {
+    task = await prisma.tasks.update({
       where: {
         id
       },
       data: {
+        nama_matkul,
         job,
-        subject_id,
         jenis,
         deadline,
         status
       }
     });
   }
-  return subject;
+  return task;
 });
 
 const tasks_put$1 = /*#__PURE__*/Object.freeze({

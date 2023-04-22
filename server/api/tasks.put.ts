@@ -5,31 +5,31 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody(event)
   const id = body.id
+  const nama_matkul = body.nama_matkul
   const job = body.job
-  const subject_id = body.subject_id
   const jenis = body.jenis
   const deadline = body.deadline
   const status = body.status
 
-  if (!(id && subject_id && job && jenis && deadline && status)) return createError({ statusCode: 400, statusMessage: "Missing ID and soon "});
+  if (!(id && nama_matkul && job && jenis && deadline && status)) return createError({ statusCode: 400, statusMessage: "Missing ID and soon "});
 
-  let subject
+  let task
   
-  if(id && subject_id && job && jenis && deadline && status) {
-    subject = await prisma.tasks.update({
+  if(id && nama_matkul && job && jenis && deadline && status) {
+    task = await prisma.tasks.update({
       where: {
-        id: id,
+        id: id
       },
       data: {
+        nama_matkul: nama_matkul,
         job: job,
-        subject_id: subject_id,
         jenis: jenis,
         deadline: deadline,
-        status: status,
+        status: status
       },
     })
   }
 
-  return subject
+  return task
 })
   

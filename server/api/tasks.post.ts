@@ -7,14 +7,14 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   let task = null
   
-  if(body.subject_id && body.job && body.jenis && body.deadline && body.status) {
+  if(body.nama_matkul && body.job && body.jenis && body.deadline && body.status) {
     await prisma.tasks.create({
       data: {
+        nama_matkul: body.nama_matkul,
         job: body.job,
-        subject_id: body.subject_id,
         jenis: body.jenis,
         deadline: body.deadline,
-        status: body.status,
+        status: body.status
       },
     }).then((response) => {
       task = response

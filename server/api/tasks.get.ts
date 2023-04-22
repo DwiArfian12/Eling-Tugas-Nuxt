@@ -8,4 +8,3 @@ export default defineEventHandler(async () => {
   return  await prisma.tasks.findMany() 
 
 })
-  

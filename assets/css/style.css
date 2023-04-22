@@ -207,7 +207,7 @@ footer .cr a:hover {
     padding: 20px 159px;
     width: 100%;
     margin-bottom: 30px;
-    min-height: calc(100vh - 250px);
+    min-height: calc(100vh - 210px);
 }
 
 .matkul h1 {
@@ -328,7 +328,7 @@ a.edit {
     padding: 0 20px;
 }
 
-.addSubject form {
+.addSubject form, .addTask form {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -348,6 +348,15 @@ a.edit {
     font-weight: bolder;;
 }
 
+.fg select {
+    border: none;
+    border-bottom: 2px solid rgb(112, 112, 112);
+    outline: none;
+    margin-top: 7px;
+    padding: 6px 10px;
+    font-size: 20px;
+    color: rgb(71, 71, 71);
+}
 .fg label {
     font-size: 21px;
 }

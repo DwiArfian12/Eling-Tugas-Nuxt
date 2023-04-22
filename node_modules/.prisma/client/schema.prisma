@@ -26,6 +26,7 @@ model users {
   refresh_tokens refresh_tokens[]
   sessions       sessions[]
   provider_users provider_users[]
+  subjects       subjects[]
 }
 
 model provider_users {
@@ -84,8 +85,10 @@ enum tokenType {
   RESET
 }
 
-model Subjects {
+model subjects {
   id          Int       @id @default(autoincrement())
+  user        users?    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id     Int
   nama_matkul String
   nama_dosen  String
   hari        String
@@ -94,10 +97,10 @@ model Subjects {
   updated_at  DateTime? @updatedAt
 }
 
-model Tasks {
+model tasks {
   id         Int       @id @default(autoincrement())
+  nama_matkul String        
   job        String
-  subject_id Int
   jenis      String
   deadline   String
   status     String

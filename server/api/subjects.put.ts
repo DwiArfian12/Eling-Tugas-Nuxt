@@ -5,12 +5,13 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody(event)
   const id = body.id
+  const user_id = body.user_id
   const nama_matkul = body.nama_matkul
   const nama_dosen = body.nama_dosen
   const hari = body.hari
   const jam = body.jam
 
-  if (!(id && nama_matkul && nama_dosen && hari && jam)) return createError({ statusCode: 400, statusMessage: "Missing ID and soon "});
+  if (!(id && user_id && nama_matkul && nama_dosen && hari && jam)) return createError({ statusCode: 400, statusMessage: "Missing ID and soon "});
 
   let subject
   
@@ -20,6 +21,7 @@ export default defineEventHandler(async (event) => {
         id: id,
       },
       data: {
+        user_id: user_id,
         nama_matkul: nama_matkul,
         nama_dosen: nama_dosen,
         hari: hari,
